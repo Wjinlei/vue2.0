@@ -226,3 +226,46 @@ v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做
     </body>
 </html>
 ```
+
+### 列表渲染
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>列表渲染</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="example">
+            <!-- 对list做遍历,item是每次遍历的元素,这和其他语言的for循环基本一样没什么可说的 -->
+            <div v-for="item in list">{{ item.name }}</div>
+
+            <hr/>
+
+            <!-- v-if和v-for一起使用 -->
+            <div v-for="item in list">
+                <div v-if="item.age > 30"> <!-- age 大于30的显示名字 -->
+                    {{ item.age }}
+                </div>
+                <div v-else> <!-- 否则显示名字 -->
+                    {{ item.name }}
+                </div>
+            </div>
+        </div>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                list: [
+                    {name: 'zhangSan', age: 20},
+                    {name: 'liSi', age: 30},
+                    {name: 'wangWu', age: 35}
+                ]
+            }
+        })
+    </script>
+    </body>
+</html>
+```
