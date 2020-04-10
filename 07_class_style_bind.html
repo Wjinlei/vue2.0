@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Class与Style绑定</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="example">
+            <div v-bind:class="{ active: isActive }"></div> <!-- active这个class是否存在,取决于isActive这个属性是否是true -->
+            <div class="status" v-bind:class="{ active: isActive }"></div> <!-- v-bind:class 指令也可以与普通的 class 属性共存-->
+            <div v-bind:class="classObj"></div> <!-- 绑定的数据对象也可不必内联定义在模板里,这里绑定一个classObj的数据对象 -->
+            <div v-bind:class="classObj2"></div> <!-- 你还可以绑定一个计算属性 -->
+            <div v-bind:class="[arrActive, arrClass]"></div> <!-- 你还可以传递一个数组来指定class列表 -->
+            <div v-bind:class="[isActive ? arrActive : '', arrClass]"></div> <!-- 当isActive为true时,才添加arrActive -->
+            <div v-bind:class="[{active : isActive}, arrClass]"></div> <!-- 当isActive为true时,才添加arrActive -->
+        </div>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                isActive: true,
+                isError: false,
+                arrActive: 'active',
+                arrClass: 'error',
+                classObj: {
+                    'active': true,
+                    'text-danger': true
+                }
+            },
+            computed: {
+                classObj2: function() {
+                    return {
+                        'active': this.isActive && !this.isError // 当vm.isActive为true和 vm.error为false的时候,才会存在active类名
+                    }
+                }
+            }
+        })
+    </script>
+    </body>
+</html>
