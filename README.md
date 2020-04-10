@@ -30,7 +30,7 @@ sudo npm install -g vue-cli
     color: red;
 }
         </style>
-        <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script> <!-- 引入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- 引入vue.js,开发模式 -->
     </head>
     <body>
         <div id="hello" class="bg">
@@ -60,7 +60,7 @@ sudo npm install -g vue-cli
     color: red;
 }
         </style>
-        <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
         <div id="hello" class="bg">
@@ -106,7 +106,7 @@ sudo npm install -g vue-cli
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>computed与watch</title>
-        <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
     <div id="example">
@@ -137,6 +137,11 @@ sudo npm install -g vue-cli
                 },
                 // 这里声明了一个msg1计算属性的 setter
                 msg1: {
+                    // getter
+                    get: function() {
+                        return this.msg
+                    },
+                    // setter
                     set: function(value) {
                         // 当msg1这个计算属性发生改变时将修改msg
                         this.msg = value
