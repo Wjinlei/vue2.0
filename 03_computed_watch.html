@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>computed与watch</title>
+        <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    </head>
+    <body>
+    <div id="example">
+        {{ msg }}
+        {{ msg.split('').reverse().join('') }} <!-- 模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护 -->
+        {{ reversedMsg }} <!-- 调用计算属性 -->
+    </div>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                msg: 'Hello'
+            },
+            // watch 表示侦听器
+            watch: {
+                // 这里声明了一个侦听器侦听msg的变化, 侦听器接收2个值,一个新值,一个旧值,当msg发生变换时将,触发侦听器
+                msg: function(newval, oldval){
+                    console.log('newval is' + newval)
+                    console.log('oldval is' + oldval)
+                }
+            },
+            // computed 计算属性
+            computed: {
+                // 这里声明了一个reversedMsg计算属性的 getter
+                reversedMsg: function() {
+                    // `this` 指向 vm 实例,reversedMsg的值会随着msg的更新而变化
+                    return this.msg.split('').reverse().join('')
+                },
+                // 这里声明了一个msg1计算属性的 setter
+                msg1: {
+                    set: function(value) {
+                        // 当msg1这个计算属性发生改变时将修改msg
+                        this.msg = value
+                    }
+                }
+            }
+        })
+    </script>
+    </body>
+</html>
