@@ -270,7 +270,8 @@ v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做
 </html>
 ```
 
-### Class绑定
+### Class与Style绑定
+- `class`绑定
 ```html
 <!DOCTYPE html>
 <html>
@@ -308,6 +309,52 @@ v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做
                     return {
                         'active': this.isActive && !this.isError // 当vm.isActive为true和 vm.error为false的时候,才会存在active类名
                     }
+                }
+            }
+        })
+    </script>
+    </body>
+</html>
+```
+- `style`绑定
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Class与Style绑定</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="example">
+            <!-- 内联写法 -->
+            <div v-bind:style="{ color: testColor1, fontSize: testFontSize1 + 'px' }">测试div1</div>
+            <!-- 直接绑定到一个样式对象 -->
+            <div v-bind:style="styleObj">测试div2</div>
+            <!-- 数组写法, 可以将多个样式对象应用到同一个元素上 -->
+            <div v-bind:style="[baseStyles, overridingStyles]">测试div3</div> <!-- 如果有多个样式属性相同,则最后一个生效 -->
+        </div>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                testColor1: 'red',
+                testFontSize1: 30,
+
+                styleObj: {
+                    color: 'red',
+                    fontSize: '50px'
+                },
+
+                baseStyles: {
+                    color: 'green',
+                    fontSize: '50px'
+                },
+
+                overridingStyles: {
+                    color: 'yellow',
+                    fontSize: '30px'
                 }
             }
         })
