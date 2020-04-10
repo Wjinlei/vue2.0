@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>条件渲染</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="example">
+            <div v-if="count == 5"> <!-- 当count == 5 -->
+                v-if: {{ count }}<br/>
+            </div>
+            <div v-else-if="count == 10"> <!-- 当count == 10 -->
+                v-else-if: {{ count }}
+            </div>
+            <div v-else> <!-- 其他情况 -->
+                v-else: {{ count }}
+            </div>
+        </div>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                count: 0,
+            }
+        })
+    </script>
+    </body>
+</html>
