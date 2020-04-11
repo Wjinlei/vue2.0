@@ -377,7 +377,7 @@ vue ui
 - 重点看优先级`A`和优先级`B`的, 地址: `https://cn.vuejs.org/v2/style-guide/`
 
 ### Vue Router
-- `Vue Router` 是 `Vue.js` 官方的路由管理器
+- `Vue Router` 是 `Vue.js` 官方的路由管理器,当然你需要安装这个插件
 
 *下面是以`vue-router`项目为例子,这是一个`hello world`工程,添加一个简单的路由*
 1. 添加`router-link`, 以下是关键代码,完整代码请看`vue-router/src/App.vue`
@@ -414,3 +414,77 @@ import Info from '../views/Info.vue' // 引入组件
   }
 ]
 ```
+
+### Vuex
+- `Vuex`是`Vue.js`官方的状态管理模块,当然你需要安装这个插件<br/>
+`PS:什么是状态管理,对于我这种初学者暂时也不能理解,暂且先把它理解为管理组件之前共享数据的东西`
+
+*下面是以`vuex`项目为例子,这是一个`vue-router`的复制工程,演示状态管理*
+1. 添加一个状态`可理解为一个共享数据,用于在各组件之间传递`
+
+以下是关键代码,完整代码请看`vuex/src/store/index.js`
+```javascript
+export default new Vuex.Store({
+  // state是状态集,其中管理所有的状态
+  state: {
+      count: 0 //状态,也就是共享数据
+  },
+  // mutations中都是状态方法集,其中的方法都是操作state中的状态的
+  mutations: {
+      // plus()方法用于对count状态+1
+      plus(){
+          this.state.count++
+      }
+  },
+})
+```
+2. 使用演示
+
+*实现info页面点击按钮对count状态+1,然后about页面输出结果*
+ 
+`vuex/src/views/Info.vue`
+```html
+<template>
+  <div>
+  This is Info Page
+  <button type="button" @click="add()">添加count</button> <!-- 点击按钮触发add()函数-->
+  </div>
+</template>
+
+<script>
+import store from '@/store' <!-- 导入状态模块 -->
+export default {
+    name: "Info",
+    store, <!-- 引入到对象中 -->
+    methods: {
+        add() {
+            store.commit("plus") <!-- 调用store中的plus()函数 -->
+        }
+    }
+}
+</script>
+```
+`vuex/src/views/About.vue`
+```html
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <p>{{ msg }}</p> <!-- 输出结果 -->
+  </div>
+</template>
+
+<script>
+import store from '@/store' <!-- 导入状态模块 -->
+export default {
+    name: "about",
+    <!-- 计算属性 -->
+    computed: {
+        msg: function() {
+            <!-- 返回count状态 -->
+            return store.state.count
+        }
+    }
+}
+</script>
+```
+
