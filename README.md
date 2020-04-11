@@ -376,3 +376,41 @@ vue ui
 ### 阅读Vue风格指南
 - 重点看优先级`A`和优先级`B`的, 地址: `https://cn.vuejs.org/v2/style-guide/`
 
+### Vue Router
+- `Vue Router` 是 `Vue.js` 官方的路由管理器
+
+*下面是以`vue-router`项目为例子,这是一个`hello world`工程,添加一个简单的路由*
+1. 添加`router-link`, 以下是关键代码,完整代码请看`vue-router/src/App.vue`
+```html
+<router-link to="/info">Info</router-link> <!-- 配置router-link -->
+```
+2. 创建组件`实际上就是Html页面,只不过包含了Vue脚本`,路径为`vue-router/src/views/Info.vue`
+```html
+<!-- Vue 组件分为3个部分,分别是 模板、脚本和样式 -->
+<template>
+  <div>This is Info Page</div>
+</template>
+
+<script>
+export default {
+    name: "Info"
+}
+</script>
+
+<style>
+
+</style>
+```
+3. 配置`路由`,以下是关键代码,完整代码请看`vue-router/src/router/index.js`
+```javascript
+import Info from '../views/Info.vue' // 引入组件
+
+  const routes = [
+  // 配置路由
+  {
+    path: '/info',
+    name: 'Info',
+    component: Info
+  }
+]
+```
