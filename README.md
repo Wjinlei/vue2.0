@@ -362,3 +362,13 @@ v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做
     </body>
 </html>
 ```
+
+### Vue项目的创建
+- `vue-cli` 2.x 脚手架
+```shell
+vue create
+```
+- `@vue/cli` 3.x 脚手架
+```shell
+vue ui
+```
