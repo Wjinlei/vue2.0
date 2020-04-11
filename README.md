@@ -488,3 +488,57 @@ export default {
 </script>
 ```
 
+### demo1
+由于该`demo`并没有用到`vue-router`或`vuex`等插件,所以我们不需要通过`@vue/cli`脚手架来创建`vue项目`<br/>
+只需要在`html`中集成`vue.js`即可,这也是集成`vue`的一种方式,个人认为实际开发中没必要非得遵循某一种<br/>
+而是**哪种更合适当前的项目再考虑用哪一种方式**
+
+`vue-demo1/index.html`
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Demo1</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style type="text/css" media="screen">
+li.active {
+    background-color: green;
+}
+        </style>
+    </head>
+    <body>
+        <div id="demo1">
+            <ul>
+                <li :class="{active: index == current && current !== ''}" @click="choose(index)" v-for="(item, index) in lists" :key="lists.index">{{ item }}</li>
+            </ul>
+            <button type="button" @click="add()">添加到下面的列表中</button>
+            <ul>
+                <li v-for="(item, index) in targetLists" :key="targetLists.index">{{ item }}</li>
+            </ul>
+        </div>
+    </body>
+    <script charset="utf-8">
+        new Vue({
+           el: '#demo1',
+           data: {
+               current: '',
+               lists: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+               targetLists: []
+           },
+           methods: {
+               choose(index) {
+                    console.log(index)
+                   this.current = index
+               },
+               add() {
+                   if(this.current == '') { return }
+                   this.targetLists.push(this.lists[this.current])
+                   this.current = ''
+               }
+           }
+        })
+    </script>
+</html>
+```
