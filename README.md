@@ -372,3 +372,7 @@ vue create
 ```shell
 vue ui
 ```
+
+### 阅读Vue风格指南
+- 重点看优先级`A`和优先级`B`的, 地址: `https://cn.vuejs.org/v2/style-guide/`
+
