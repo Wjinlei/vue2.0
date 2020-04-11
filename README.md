@@ -452,13 +452,13 @@ export default new Vuex.Store({
 </template>
 
 <script>
-import store from '@/store' <!-- 导入状态模块 -->
+import store from '@/store' // 导入状态模块
 export default {
     name: "Info",
-    store, <!-- 引入到对象中 -->
+    store, // 引入到对象中
     methods: {
         add() {
-            store.commit("plus") <!-- 调用store中的plus()函数 -->
+            store.commit("plus") // 调用store中的plus()函数
         }
     }
 }
@@ -474,13 +474,13 @@ export default {
 </template>
 
 <script>
-import store from '@/store' <!-- 导入状态模块 -->
+import store from '@/store' // 导入状态模块
 export default {
     name: "about",
-    <!-- 计算属性 -->
+    // 计算属性
     computed: {
         msg: function() {
-            <!-- 返回count状态 -->
+            // 返回count状态
             return store.state.count
         }
     }
